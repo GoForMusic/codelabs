@@ -8,4 +8,5 @@
 <li><a href="/codelabs/DNP1/TodoTutorialPart4_EFC/Page.html" target="_blank">Todo app tutorial - EFC</a></li>
 <li><a href="/codelabs/DNP1/CsharpDebugging/Page.html" target="_blank">Introduction to debugging in C#</a></li>
 <li><a href="/codelabs/DNP1/BlazorLogin/Page.html" target="_blank">Simple Blazor-server login</a></li>
+<li><a href="/codelabs/DNP1/BlazorWasmJwtAuth/Page.html" target="_blank">JWT Login</a></li>
 
