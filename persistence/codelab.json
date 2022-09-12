@@ -1,0 +1,22 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-03-25T15:09:59Z",
+  "id": "persistence",
+  "duration": 110,
+  "title": "Persistence",
+  "authors": "Kasper Knop Rasmussen",
+  "summary": "",
+  "source": "1l43AYdJUEQZRDKEhkgUhO-rf_-Yxz-kUwD71oOur3fk",
+  "theme": "android",
+  "status": [],
+  "category": [
+    "android"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "persistence"
+}

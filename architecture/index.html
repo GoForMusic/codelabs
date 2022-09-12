@@ -1,0 +1,193 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Architecture</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="architecture"
+                  title="Architecture"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="5">
+        <p>Today you will learn how to structure your source code to get a scaleable, maintainable and reliable application. For this we will use the officially supported application architecture - Model View ViewModel (MVVM).</p>
+<p>Google has made it easier to implement this architecture by using <a href="https://developer.android.com/topic/libraries/architecture/index.html" target="_blank">Android Architecture Components</a>, which includes the <a href="https://developer.android.com/topic/libraries/architecture/livedata" target="_blank"><code>LiveData</code></a> and <a href="https://developer.android.com/topic/libraries/architecture/viewmodel" target="_blank"><code>ViewModel</code></a> components.</p>
+<p><code>LiveData</code> is an observable dataholder, that helps you manage the Android lifecycle.</p>
+<p><code>ViewModel</code> provides the data for your UI and can survive configuration changes.</p>
+<p class="image-container"><img style="width: 640.13px" src="img\\46ea24ac7ca34d44.png"></p>
+<h2 class="checklist" is-upgraded>What you&#39;ll learn</h2>
+<ul class="checklist">
+<li>How to create a simple note taking application using the MVVM architecture</li>
+<li>How to utilize the <code>ViewModel</code> class to hold and provide UI data</li>
+<li>How to convert your data into <code>LiveData</code> and observe data changes</li>
+<li>How to abstract the data backend with the repository pattern in conjunction with MVVM</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="MVVM Dependencies" duration="10">
+        <p>Create a new Project with an empty <code>Activity</code>. Add <code>LiveData</code> and <code>ViewModel</code> dependencies to your project.</p>
+<p class="image-container"><img style="width: 325.50px" src="img\\99a8b5f515af9ef4.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Why are we doing this? Why are architectures important?</li>
+<li>What is SOLID and how does it relate to architectures?</li>
+<li>What architecture patterns do you know of?</li>
+<li>What happens to the <code>Activity</code>, if you do not use an architecture?</li>
+<li>What is Android Jetpack?</li>
+<li>What libraries do you know of from Jetpack?</li>
+<li>What is AndroidX?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="A Note App" duration="10">
+        <p>For your MainActivity, create the layout for a small note taking application. It should contain:</p>
+<ul>
+<li>An <code>EditText</code> field to write a note</li>
+<li>A <code>Button</code> to save the note</li>
+<li>A <code>Button</code> to delete all notes</li>
+<li>A <code>TextView</code> to display all notes</li>
+</ul>
+<p class="image-container"><img style="width: 356.50px" src="img\\bbe23c895a8132f5.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Have a look at the <a href="https://github.com/KasperKnop/ArchitectureExample" target="_blank">example</a> on GitHub</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ViewModels" duration="15">
+        <p>Create a <code>ViewModel</code> class for your <code>Activity</code> to hold and manipulate the UI data. It should contain</p>
+<ul>
+<li>The list of notes</li>
+<li>A method to retrieve all notes in the list</li>
+<li>A method to add notes to the list</li>
+<li>A method delete all notes from the list</li>
+</ul>
+<p>Retrieve the instance of your <code>ViewModel</code> in your <code>Activity</code> and display its data in the <code>TextView</code>. <strong>You should not use </strong></p>
+<p><strong><code>LiveData</code></strong></p>
+<p><strong> yet</strong>.</p>
+<p class="image-container"><img style="width: 465.50px" src="img\\b66e3dc57235594e.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the purpose of a <code>ViewModel</code>? Why not store all the data in the <code>Activity</code>?</li>
+<li>Should the <code>ViewModel</code> hold any reference to the <code>Activity</code>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="LiveData" duration="15">
+        <p>Modify your solution from the previous exercise to use <code>LiveData</code>.</p>
+<p class="image-container"><img style="width: 602.17px" src="img\\d724da2f7939d004.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the purpose of using <code>LiveData</code>? </li>
+<li>What is the difference between <code>MutableLiveData</code> and <code>LiveData</code>?</li>
+<li>How do you observe <code>LiveData</code> in an <code>Activity</code> or <code>Fragment</code>?</li>
+<li>How does <code>LiveData</code> relate to the observer pattern? </li>
+<li>Why don&#39;t we have to manage observers ourselves when using <code>LiveData</code>?</li>
+<li>What does it mean that <code>LiveData</code> is lifecycle aware?</li>
+<li>What advantage do you get from dependencies only pointing in one direction?</li>
+<li>What would be the alternatives to using <code>LiveData</code>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="The Repository Pattern" duration="30">
+        <p>Expand your solution to include a repository and a database. The database should just be an in-memory placeholder for now - we will learn to persist data next week :)</p>
+<p class="image-container"><img style="width: 603.50px" src="img\\46ea24ac7ca34d44.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the purpose of a repository?</li>
+<li>Could you have multiple repositories?</li>
+<li>Why should the repository be a singleton?</li>
+<li>What is the purpose of a data access object?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="A Note From the Internet!" duration="30">
+        <p>For this exercise we will simulate interacting with a web service. This could take time. Therefore we need to show a progress bar when data is loading. Your task is the following:</p>
+<ol type="1" start="1">
+<li>Add a <code>ProgressBar</code> and a <code>Button</code> to the layout.</li>
+<li>Create a placeholder webclient class that can return a Note after a given period of time (simulating receiving data from the internet).</li>
+<li>Add appropriate members to the View, ViewModel and Repository.</li>
+<li>Whenever you click the button, the progress bar must be shown for 5 seconds before the Note from the internet is added to the list of notes.</li>
+</ol>
+<p class="image-container"><img style="width: 389.90px" src="img\\a56795e56ccaac5a.png"></p>
+<pre><code>new Timer().schedule(new TimerTask() {
+   @Override
+   public void run() {
+       //Do something in a background thread after the delay
+   }
+}, 5000);</code></pre>
+<aside class="special"><h2 is-upgraded>Consider<strong>.</strong></h2>
+<ul>
+<li>You can use the <a href="https://docs.oracle.com/javase/7/docs/api/java/util/Timer.html" target="_blank"><code>Timer</code></a> as shown in the code snippet above for delaying the data retrieval.</li>
+<li>You can use <code>MutableLiveData<Boolean></code> in the <code>ViewModel</code> to signify when the data is saving. Then observe this boolean in the <code>Activity</code>.</li>
+<li>This is not easy! Check out the solution branch on the GitHub repo for inspiration.</li>
+<li>What is the difference between <code>postValue()</code> and <code>setValue()</code>? Is this relevant here?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Bonus: MVVM &#43; App Project" duration="0">
+        <p>Show the architecture of your app project in class diagram using Astah.</p>
+<p>Afterwards, start implementing MVVM in your app project.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\459d49fd63559ce9.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>The diagram does not need to be a detailed class diagram like in the picture above</li>
+<li>What data is wrapped in LiveData in your application?</li>
+<li>How many ViewModels do you need?</li>
+<li>What entities does you app operate on?</li>
+<li>Have you implemented a placeholder class for your web client? For you local data storage?</li>
+<li>How much of the application could you implement right now? What classes do you need more information on before you can implement?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

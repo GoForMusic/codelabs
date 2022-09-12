@@ -1,0 +1,22 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-02-02T17:47:14Z",
+  "id": "quality",
+  "duration": 105,
+  "title": "Quality",
+  "authors": "Kasper Knop Rasmussen",
+  "summary": "",
+  "source": "1gYb7ufrlkt6JX5M3xmDzXvlJo0jibq6Pt6ideNVnh6Q",
+  "theme": "android",
+  "status": [],
+  "category": [
+    "android"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "quality"
+}

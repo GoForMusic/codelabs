@@ -1,0 +1,218 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Networking</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="networking"
+                  title="Networking"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="5">
+        <p>Today, you will learn how to communicate with Web APIs. We will use <a href="https://square.github.io/retrofit/" target="_blank">Retrofit</a> - a type-safe HTTP client library for Android. It is an abstract layer on top of the networking layer, that makes it easier to do HTTP requests. It also works in conjunction with converters such as <a href="https://github.com/google/gson" target="_blank">Gson</a>, that can serialize and deserialize your JSON data.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\4dfcbadb83767537.png"></p>
+<h2 class="checklist" is-upgraded>What you&#39;ll learn</h2>
+<ul class="checklist">
+<li>How to use Retrofit to consume a Web API</li>
+<li>How to work with Gson to deserialize JSON data</li>
+<li>How to use a Retrofit client in conjunction with MVVM and the repository pattern</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Web Services" duration="15">
+        <p>Today, you decide what kind of application you want to develop. Choose a Web API, that you will communicate with in your application. </p>
+<p>Here is some inspiration:</p>
+<ul>
+<li><a href="https://swapi.dev/" target="_blank">Star Wars API</a></li>
+<li><a href="https://pokeapi.co/" target="_blank">PokéAPI</a></li>
+<li><a href="http://www.omdbapi.com/" target="_blank">OMDb API</a></li>
+<li><a href="https://www.mediawiki.org/wiki/API:FAQ" target="_blank">Wikipedia</a></li>
+<li><a href="https://developers.google.com/books/" target="_blank">Google Books</a></li>
+<li><a href="https://portal.opendata.dk/" target="_blank">OpenData</a></li>
+<li><a href="https://www.programmableweb.com/apis/directory" target="_blank">ProgrammableWeb</a></li>
+</ul>
+<p class="image-container"><img style="width: 624.00px" src="img\\bc26692c107bd129.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>For simplicity, it is recommended that you start with an unrestricted Web API, or at least one that does not require OAuth.</li>
+<li>What is a Web API?</li>
+<li>What does RESTful mean?</li>
+<li>What kind of data can your Web API return? How is it structured?</li>
+<li>Is the API well-documented?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Retrofit - Initial setup" duration="10">
+        <p>Include the Gradle dependencies for Retrofit &amp; your chosen converter, &amp; declare the permissions you are going to need in the manifest.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\4cb15c7327853b40.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is Retrofit?</li>
+<li>How does Retrofit compare to OkHttp?</li>
+<li>Do you know of any other networking libraries for Android?</li>
+<li>What permissions do you need to use Retrofit?</li>
+<li>What converters can you choose between?</li>
+<li>Have a look at the <a href="https://github.com/KasperKnop/NetworkingExample" target="_blank">example project on Github</a></li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="API Endpoint" duration="15">
+        <p>Create an interface with methods that define how you can interact with the Web API. For starters, enable a GET-request.</p>
+<h3 is-upgraded><a href="https://github.com/KasperKnop/NetworkingExample/blob/master/app/src/main/java/com/kasperknop/networkingexample/PokemonApi.java" target="_blank">PokemonApi.java</a></h3>
+<pre><code>import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+
+public interface PokemonApi {
+
+   @GET(&#34;api/v2/pokemon/{name}&#34;)
+   Call&lt;PokemonResponse&gt; getPokemon(@Path(&#34;name&#34;) String name);
+}</code></pre>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Are you using the proper annotations for the methods and parameters?</li>
+<li>What kind of HTTP-requests can you make?</li>
+<li>What does <code>@Path</code> &amp; <code>@Query</code> do? <code>@Body</code>?</li>
+<li>Why is the return type wrapped in a <code>Call</code> object?</li>
+<li>How do you send custom data with in the header?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Converting to Java Objects" duration="20">
+        <p>Create a Response-class, that helps with converting your data into Java objects, that you can use in your application.</p>
+<p class="image-container"><img style="width: 458.30px" src="img\\72ec8a18afeec5af.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>How do you map data from JSON to a Java object with Gson? Any important annotations for this?</li>
+<li>What is JSON? What is Gson?</li>
+<li>Do you have to convert all of the received JSON data?</li>
+<li>How do you access nested JSON objects?</li>
+<li>How do you access JSON arrays?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Service Generator" duration="10">
+        <p>Create a ServiceGenerator singleton, that abstract away the instantiation of your API.</p>
+<h3 is-upgraded><a href="https://github.com/KasperKnop/NetworkingExample/blob/master/app/src/main/java/com/kasperknop/networkingexample/ServiceGenerator.java" target="_blank">ServiceGenerator.java</a></h3>
+<pre><code>public class ServiceGenerator {
+   private static PokemonApi pokemonApi;
+
+   public static PokemonApi getPokemonApi() {
+       if (pokemonApi == null) {
+           pokemonApi = new Retrofit.Builder()
+                   .baseUrl(&#34;https://pokeapi.co&#34;)
+                   .addConverterFactory(GsonConverterFactory.create())
+                   .build()
+                   .create(PokemonApi.class);
+       }
+       return pokemonApi;
+   }
+}</code></pre>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the base URL?</li>
+<li>What is the purpose of the converter factory?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Test Request" duration="15">
+        <p>Create an interface to hold the data from the Web API, and test a request from your Main Activity, to see that your API client works.</p>
+<p class="image-container"><img style="width: 274.98px" src="img\\c4ef55c915d5f66b.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Are you using enqueue() or execute() on the call object? What is the difference?</li>
+<li>What happens if you try to execute the call on the main thread?</li>
+<li>How do you retrieve the data from a request?</li>
+<li>Are you using HTTP-error codes?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Request from Repository" duration="15">
+        <p>Use your API in conjunction with MVVM and a repository. </p>
+<p class="image-container"><img style="width: 624.00px" src="img\\61c7baa4fff161e1.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Are you storing the data from the Web API in MutableLiveData?</li>
+<li>Why can you only use postValue() and not setValue() on the LiveData?</li>
+<li>Are you accessing the API directly in the Repository, or have you created a Client class to abstract away the management of the call?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Bonus: Explore more on your own!" duration="0">
+        <p>Already done? Expand on the functionality of your application, or try out one of these:</p>
+<ul>
+<li>Find out what WebAPI to use for your app project</li>
+<li>Use an API that requires OAuth or an API Key</li>
+<li>Post serialized objects to a Web API</li>
+<li>Display data from a WebAPI in a list</li>
+<li>Use <a href="https://github.com/bumptech/glide" target="_blank">Glide</a> to display images from a Web API</li>
+<li>Try out <a href="https://www.getpostman.com" target="_blank">Postman</a> to test WebAPIs or mock your own!</li>
+<li>Explore more advanced concepts in the <a href="https://www.youtube.com/playlist?list=PLpUMhvC6l7APq7y_FFfK-GEHvcUKqo6SC" target="_blank">Retrofit youtube playlist</a> or the <a href="https://www.youtube.com/playlist?list=PLpUMhvC6l7AOy4UEORSutzFus98n-Es_l" target="_blank">Gson youtube playlist</a></li>
+</ul>
+<p class="image-container"><img style="width: 400.00px" src="img\\93dbe53fd5fbcad0.gif"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is is an API Key?</li>
+<li>What is OAuth?</li>
+<li>What is an access token?</li>
+<li>How do you serialize Java Objects to JSON?</li>
+<li>What is Glide?</li>
+<li>What is Postman?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

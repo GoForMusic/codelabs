@@ -1,0 +1,157 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Quality</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="quality"
+                  title="Quality"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="5">
+        <p>Today, you will learn how you can ensure a high app quality by applying a variety of tests, and you will learn about various quality guidelines that you must follow  to get your application ready for release.</p>
+<p>Testing your code can help you catch bugs early in development, when bugs are the least expensive to address. As your app gets larger and more complex, testing improves your code&#39;s robustness. With tests in your code you can test in ways that are automatable and repeatable.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\30f461e6f819c6a.png"></p>
+<p>We will look at how to test small units in your application, as well as how to test the user interface, and we will carry out tests both on an emulator/real device and on the JVM.</p>
+<p>Afterwards, we will look at how to create a release build and publish it to the Google Play Store, considering e.g. security and performance.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\c190522c1c724707.png"></p>
+<h2 class="checklist" is-upgraded>What you&#39;ll learn</h2>
+<ul class="checklist">
+<li>How to organize and run tests in Android Studio</li>
+<li>Write unit tests for your code</li>
+<li>How to use <a href="https://site.mockito.org/" target="_blank">Mockito</a> to introduce test doubles in your tests</li>
+<li>How to write UI tests using <a href="https://developer.android.com/training/testing/espresso" target="_blank">Espresso</a></li>
+<li>How to use the Record Espresso Test function in Android Studio</li>
+<li>How to use <a href="http://robolectric.org/" target="_blank">Robolectric</a> to run instrumented tests faster</li>
+<li>How to create a release build of your application</li>
+<li>How to distribute your application using the <a href="https://play.google.com/apps/publish" target="_blank">Google Play Console</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Local Unit Tests" duration="30">
+        <p>Create local unit tests for your app project. Introduce dependency mocking if necessary.</p>
+<p class="image-container"><img style="width: 413.00px" src="img\\b49c5d9a4a3f1505.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is a unit test? What does local mean?</li>
+<li>Where do you write local unit tests?</li>
+<li>What is JUnit?</li>
+<li>Are you testing behavior? Why is that important?</li>
+<li>What annotations can you use?</li>
+<li>Are you using Mockito to isolate your subject under test from its dependencies?</li>
+<li>What is the difference between dummies, stubs, spies, mocks and fakes?</li>
+<li>What dependencies do you need?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="UI Tests" duration="30">
+        <p>Create UI tests for your app project.</p>
+<p class="image-container"><img style="width: 284.00px" src="img\\6891dae45f937ca2.gif"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>How is UI tests different from unit tests?</li>
+<li>Why are rules important for UI tests?</li>
+<li>What does intrumentation mean?</li>
+<li>What is the purpose of <code>ViewMatcher</code>, <code>ViewAction</code> and <code>ViewAssertion</code>?</li>
+<li>Are you using the <a href="https://android.github.io/android-test/downloads/espresso-cheat-sheet-2.1.0.pdf" target="_blank">cheat sheet</a>?</li>
+<li>Have you tried testing intents, lists or idling resources?</li>
+<li>What dependencies do you need?</li>
+<li>How is Espresso different from <a href="https://developer.android.com/training/testing/ui-automator" target="_blank">UI Automater</a>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Record Espresso Test" duration="10">
+        <p>Create a UI test automatically through the Espresso Test Recorder.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\c3d43fa0aea6806d.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>How is the generated code different from how you would have wrote it? Which implementation is better?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Robolectric" duration="20">
+        <p>Try running some of your instrumented UI tests as local tests using Robolectric.</p>
+<p class="image-container"><img style="width: 332.50px" src="img\\fd6c4606916c8e75.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>How is Robolectric different from doing an instrumentation test?</li>
+<li>Why is the icon a sheep?</li>
+<li>Are you including all dependencies for the <code>testImplementation</code>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Release Build &amp; APK Signing" duration="10">
+        <p>Prepare your application for release and generate a signed App Bundle.</p>
+<p class="image-container"><img style="width: 376.00px" src="img\\d81731f5019615c7.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is difference between an APK and App Bundle?</li>
+<li>What is R8 and Proguard? How does shrinking, obfuscating and optimizing help?</li>
+<li>Are you storing hardcoded secrets in your application? What can you do about that?</li>
+<li>What is the difference between certificate, app signing key, upload key and keystore?</li>
+<li>How are you storing your app signing key?</li>
+<li>Are you following the <a href="https://developer.android.com/docs/quality-guidelines/index.html" target="_blank">quality guidelines</a>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Bonus: Release on Google Play Store" duration="0">
+        <p>If you are willing to pay the registration costs, set up a Google developer account and distribute your app project on the Google Play Store.</p>
+<p class="image-container"><img style="width: 579.29px" src="img\\4ad92ada74f806e1.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>You can start with private releases for testers, if you are not ready to fully release to the Play Store yet.</li>
+<li>Are you following the <a href="https://developer.android.com/distribute/best-practices/launch/launch-checklist" target="_blank">launch checklist</a>?</li>
+<li>What is the the IARC content rating?</li>
+<li>Do you have a privacy policy?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

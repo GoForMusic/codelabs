@@ -1,0 +1,211 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Lists</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="lists"
+                  title="Lists"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="5">
+        <p>Letting the user display, scroll, and manipulate a list of similar data items is a common app feature. Examples of scrollable lists include contact lists, playlists, photo directories, dictionaries and shopping lists, as well as news- and email feeds as shown in the images below.</p>
+<p class="image-container"><img style="width: 178.92px" src="img\\fc979723cc5240b0.jpeg"> <img style="width: 178.92px" src="img\\11c7abfb4fd9d848.jpeg"></p>
+<p>Previously, you have used <a href="https://developer.android.com/reference/android/widget/ScrollView" target="_blank"><code>ScrollView</code></a> to scroll a <code>View</code> or <code>ViewGroup</code>. <code>ScrollView</code> is easy to use, but it&#39;s not recommended for long, scrollable lists. <a href="https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html" target="_blank"><code>RecyclerView</code></a> is a subclass of <code>ViewGroup</code> and is a more resource-efficient way to display scrollable lists. Instead of creating a <code>View</code> for each item that may or may not be visible on the screen, <code>RecyclerView</code> creates a limited number of list items and reuses them for visible content, as shown in the gif below.</p>
+<p class="image-container"><img style="width: 785.96px" src="img\\45b8ed97e7c553cd.gif"></p>
+<h2 class="checklist" is-upgraded>What you&#39;ll learn</h2>
+<ul class="checklist">
+<li>How to use the <code>RecyclerView</code> class to display items in a scrollable list.</li>
+<li>How to implement custom adapters to supply RecyclerViews with View data.</li>
+<li>How to perform an action when the user taps a specific item.</li>
+<li>How to promote smooth scrolling utilizing the <code>ViewHolder</code> pattern.</li>
+<li>How to utilize a <a href="https://developer.android.com/guide/topics/ui/controls/spinner" target="_blank"><code>Spinner</code></a>.</li>
+<li>How to take advantage of alternative LayoutManagers as well as item animations.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Including dependencies" duration="5">
+        <p>Completing the first 6 exercises will leave you with a working list that utilizes view recycling. To get started, include <code>RecyclerView</code> in your dependencies and layout.</p>
+<p class="image-container"><img style="width: 249.50px" src="img\\456ee1d09f8e3b90.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is view recycling and why is it useful?</li>
+<li>What is the purpose of a <code>RecyclerView</code>?</li>
+<li>When is it a good idea to use a <code>RecyclerView</code>? When is it a BAD idea?</li>
+<li>Why do we need an adapter?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="List Items" duration="10">
+        <p>Decide what kind of items you want to display in the list and create the layout for a single item in your <code>RecyclerView</code>.</p>
+<p class="image-container"><img style="width: 304.00px" src="img\\f6cd82ec6206661a.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Why is it important that you give each <code>View</code> an id?</li>
+<li>Where are you going to use that id later?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="POJO" duration="5">
+        <p>Create a Plain Old Java Object to hold the data of a single item in the list.</p>
+<pre><code>public class Pokemon {
+   private String mName;
+   private int mIconId;
+
+   Pokemon(String name, int iconId) {
+       mName = name;
+       mIconId = iconId;
+   }
+
+   public String getName() {
+       return mName;
+   }
+
+   public int getIconId() {
+       return mIconId;
+   }
+}</code></pre>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Have you tried to generate getters, setters and constructors automatically in AS?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Activities &amp; RecyclerViews" duration="10">
+        <p>Set up your <code>Activity</code> to use the <code>RecyclerView</code> and a custom adapter class.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\3cddf29fa68215e0.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the <code>LayoutManager</code> used for?</li>
+<li>What kind of layout managers can you use?</li>
+<li>What is the purpose of the adapter pattern?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="The Adapter" duration="20">
+        <p>Create the custom adapter class with a constructor, a <code>ViewHolder</code> and the proper methods.</p>
+<aside class="warning"><p><strong>TIP: </strong>You only have to extend <code>RecyclerView.Adapter</code> - Android Studio can more or less take care of the rest with code completion!</p>
+</aside>
+<p class="image-container"><img style="width: 624.00px" src="img\\cbc54b4bff4052d1.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the responsibility of the adapter?</li>
+<li>Have you implemented <code>onCreateViewHolder()</code>, <code>onBindViewHolder()</code> and <code>getItemCount()</code>? What are they used for?</li>
+<li>What is the purpose of a <a href="https://developer.android.com/reference/android/support/v7/widget/RecyclerView.ViewHolder.html" target="_blank"><code>ViewHolder</code></a>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Supplying Data" duration="10">
+        <p>Supply your adapter with data. Everything should be working now - run your application and enjoy! :)</p>
+<p class="image-container"><img style="width: 287.77px" src="img\\11bf763dff8cf473.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What kind of data does your application use?</li>
+<li>What other data types might be relevant in the future?</li>
+<li>What would you need to change to support other data types?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Interactive RecyclerViews" duration="15">
+        <p>Make the items in the <code>RecyclerView</code> clickable. Whenever the user clicks an item, a <code>Toast</code> with its index number should appear.</p>
+<p class="image-container"><img style="width: 434.32px" src="img\\2a8da946a05e2bd8.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>The <code>RecyclerView</code> does not come with an <a href="https://developer.android.com/reference/android/view/View.OnClickListener.html" target="_blank"><code>onClickListener</code></a>. How do you create your own?</li>
+<li>How do you retrieve the index number?</li>
+<li>How could you pass along other data about your items to the <code>Toast</code>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Dynamic View Changes" duration="15">
+        <p>Create a list of celebrities containing an image and a name for each celebrity. Male entries should have blue background color and female entries should have a pink background color. When you click on a celebrity a quote from that person should appear in a toast.</p>
+<p class="image-container"><img style="width: 224.50px" src="img\\564c21c1fe90b638.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Where would you change the background color?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Spinners" duration="15">
+        <p>The Android framework includes other Views that utilizes adapters. One common example is a <a href="https://developer.android.com/guide/topics/ui/controls/spinner" target="_blank"><code>Spinner</code></a>. Try to figure out how to populate a <code>Spinner</code> with data on your own. Make it react to user input.</p>
+<p class="image-container"><img style="width: 317.50px" src="img\\269c560ee74cddf3.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>When are <code>Spinners</code> useful?</li>
+<li>How is it different from implementing a <code>RecyclerView</code>?</li>
+<li>Can you populate it with string array data from the resource folder?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Bonus: Layout Managers" duration="0">
+        <p>Change the appearance and behavior of your <code>RecyclerView</code> by utilizing different Layout Managers - e.g. a <a href="https://developer.android.com/reference/android/support/v7/widget/GridLayoutManager.html" target="_blank"><code>GridLayoutManager</code></a>. Also, try to play around with various item animations.</p>
+<p class="image-container"><img style="width: 548.55px" src="img\\39dcc8994e982f3.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>How do you change the layout style?</li>
+<li>Have you configured your Views to match the new layout?</li>
+<li>Done already? Practise implementing even more lists on your own! :)</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

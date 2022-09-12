@@ -1,0 +1,214 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>UX</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="ux"
+                  title="UX"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="5">
+        <p>Today, you are going to learn how to use various premade components from the Android framework (and related official libraries), in order to provide an elegant user experience, that allows your users to interact with your application efficiently, intuitively and gracefully. The main focus will be on two essential components - the <em>App Bar</em> and the <em>Navigation Drawer</em>.</p>
+<p>The <em>App Bar</em> (also referred to as <code>ActionBar</code>) is a dedicated space at the top of an <code>Activity</code> screen, that can be used for branding, navigation and actions.</p>
+<p class="image-container"><img style="width: 575.92px" src="img\\afb4884575a0e944.png"></p>
+<p>A <em>Navigation Drawer</em> is a panel that usually displays navigation options on the left edge of the screen. It is hidden most of the time, but is revealed when the user swipes a finger from the left edge of the screen or touches the navigation icon in the App Bar.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\e2577f690221ec3f.png"></p>
+<h2 class="checklist" is-upgraded>What you&#39;ll learn</h2>
+<ul class="checklist">
+<li>How to implement an <code>ActionBar</code></li>
+<li>How to add an options menu to the <code>ActionBar</code></li>
+<li>How to add the Up button to the <code>ActionBar</code></li>
+<li>How to use a <code>FloatingActionButton</code></li>
+<li>How to use a <code>SnackBar</code></li>
+<li>How to merge layouts</li>
+<li>How to implement a Navigation Drawer</li>
+<li>How to create wireframes of your application layouts</li>
+<li>How to use <a href="https://material.io/" target="_blank">Material Design</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Replacing the ActionBar" duration="5">
+        <p>Create a new project and replace the default <code>ActionBar</code> with a <code>Toolbar</code>.</p>
+<p class="image-container"><img style="width: 614.50px" src="img\\f5d782a46c3f6351.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the purpose of an <code>ActionBar</code>?</li>
+<li>How do we remove the default <code>ActionBar</code> of an application?</li>
+<li>What is the difference between an <code>ActionBar</code> and a <code>Toolbar</code>?</li>
+<li>How is a <code>Toolbar</code> declared through XML and what attributes does it have?</li>
+<li>What happens if <code>setSupportActionBar()</code> is not called?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Include action buttons in the AppBar" duration="10">
+        <p>Create an action button on your <code>ActionBar</code>, which displays a <code>Toast</code> once clicked.</p>
+<p class="image-container"><img style="width: 598.42px" src="img\\e7d4535364584278.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What methods must be overridden to create the action button?</li>
+<li>How do you handle input?</li>
+<li>How do you implement icons instead of text?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Implementing an overflow menu" duration="15">
+        <p>Create an overflow menu in your <code>ActionBar</code> with three items to select between, each navigating to a new <code>Activity</code>. Each <code>Activity</code> must have an <code>ActionBar</code>.</p>
+<p class="image-container"><img style="width: 611.33px" src="img\\dbfb4398eddcdfb0.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Why would this have been better to do with <code>Fragments</code>? Can you implement this using <code>Fragments</code> and the <em>Navigation Component</em>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Navigating using the up-action" duration="5">
+        <p>Create an up-action for your <code>ActionBar</code>.</p>
+<p class="image-container"><img style="width: 619.50px" src="img\\e7d4e00907dd1e6a.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What should be changed in the manifest?</li>
+<li>How is the up-action different from the back button?</li>
+<li>How is this handled using the <em>Navigation Component</em>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Promoting action with a FloatingActionButton" duration="5">
+        <p>Create a <code>FloatingActionButton</code>, which displays a <code>Toast</code> with a text of your choice.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\564652a491ab61a.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Is your code different from the code generated when creating a &#34;Basic Activity&#34;?</li>
+<li>Why use a <code>FloatingActionButton</code>?</li>
+<li>Are you following the <a href="https://material.io/components/buttons-floating-action-button/#usage" target="_blank">material design guidelines</a> for the FAB?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Using Snackbars" duration="5">
+        <p>Replace the toast in the previous exercise with a <a href="https://developer.android.com/reference/android/support/design/widget/Snackbar.html" target="_blank"><code>Snackbar</code></a>. You should use a <code>CoordinatorLayout</code> as the root element of your layout, in order to make the <code>FloatingActionButton</code> respond to layout changes when the <code>Snackbar</code> is displayed.</p>
+<p class="image-container"><img style="width: 615.50px" src="img\\4562f07ff1772d14.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the purpose of the <code>CoordinatorLayout</code>?</li>
+<li>What is the difference between a <code>Toast</code> and a <code>Snackbar</code>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Merging Layouts" duration="5">
+        <p>Use the <code><include/></code> element to merge two layouts together.</p>
+<pre><code>&lt;include layout=&#34;@layout/content_main&#34; /&gt;</code></pre>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>When is it useful to merge layouts together?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Adding a Navigation Drawer" duration="20">
+        <p>Create a Navigation Drawer that responds to user input.</p>
+<p class="image-container"><img style="width: 466.44px" src="img\\a90970dbe98ab891.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>It is highly recommended that you take a look at the &#34;Navigation Drawer Activity&#34; template by creating a new project in Android studio. This template uses the <em>Navigation Component</em>, which is also highly recommended. Take a look at the bonus exercise from last week, if you want to learn more about the<em> Navigation Component</em>, or the <a href="https://developer.android.com/guide/navigation" target="_blank">documentation</a>.</li>
+<li>What is the purpose of <code>DrawerLayout</code> and <code>NavigationView</code>?</li>
+<li>How and where do you define the menu for the drawer?</li>
+<li>What interface should be implemented to respond to menu interactions?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Single Activity Application" duration="20">
+        <p>Build on the application from the previous exercise. It should have multiple screens, which the user can navigate between using the Navigation Drawer. The screens should be implemented as Fragments - that means only one Activity should be used.</p>
+<p class="image-container"><img style="width: 348.50px" src="img\\98690f711992d602.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the difference between using <code>Fragments</code> and <code>Intents</code>?</li>
+<li>What containers are you using for the <code>ActionBar</code> and the <code>DrawerLayout</code>?</li>
+<li>Are you using the <em>Navigation Component</em> or Fragment Transactions directly?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Mockup your App!" duration="45">
+        <p>Take on the roll of a UX and UI designer! Find the requirements for your app project and create a wireframe layout for your application. You can use online tools like <a href="https://www.figma.com" target="_blank">Figma</a> or <a href="https://marvelapp.com/" target="_blank">Marvelapp</a>, or pen and paper. </p>
+<p class="image-container"><img style="width: 561.50px" src="img\\7a04c738cec28e74.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Have you prioritized the requirements? This might make it easier to manage your time.</li>
+<li>Don&#39;t have a customer to give you the requirements? Try talking to potential users of your application to create the requirements instead.</li>
+<li>You don&#39;t have to create a detailed version of the app at this point. Focus on what goes where on each app screen, and what features to include.</li>
+<li>Are you following Google&#39;s <a href="https://material.io/" target="_blank">Material Design</a>?</li>
+<li>Want a detailed mockup? Here is a <a href="https://www.figma.com/blog/material-design-figma-styles/" target="_blank">blog post</a> about using Material Design with Figma.</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Bonus: Other UI-Components" duration="0">
+        <p>Experiment with any UI-component of your choice. Get inspiration from the <a href="https://material.io/components?platform=android" target="_blank">material design website</a> or the palette in Android Studio.</p>
+<p class="image-container"><img style="width: 232.00px" src="img\\610064c8862bb651.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Could you come up with examples on when to use each of the navigational components? How do they compare?</li>
+<li>Have you found any interesting new components to use in your application?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

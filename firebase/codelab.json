@@ -1,0 +1,22 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-02-02T17:15:41Z",
+  "id": "firebase",
+  "duration": 95,
+  "title": "Firebase",
+  "authors": "Kasper Knop Rasmussen",
+  "summary": "",
+  "source": "1M8agH1BAt-58T-n8idCUDB4-58-VbUFarE2v8lJxSuM/edit#heading=h.7sa4zxkhmsum",
+  "theme": "android",
+  "status": [],
+  "category": [
+    "android"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "firebase"
+}

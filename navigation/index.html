@@ -1,0 +1,174 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Navigation</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="navigation"
+                  title="Navigation"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="5">
+        <p>Today you will create your first multi-screen applications using Intents and Fragments.</p>
+<p>An <code>Activity</code> is started or activated with an <em>intent</em>. An <a href="https://developer.android.com/reference/android/content/Intent.html" target="_blank"><code>Intent</code></a> is an asynchronous message that you can use in your <code>Activity</code> to request an action from another <code>Activity</code>, or from some other app component. You use an <code>Intent</code> to start one <code>Activity</code> from another <code>Activity</code>, and to pass data between activities.</p>
+<p class="image-container"><img style="width: 625.51px" src="img\\8970302f53ba4aea.png"></p>
+<p>A <a href="http://developer.android.com/guide/components/fragments.html" target="_blank"><code>Fragment</code></a> is a self-contained component with its own user interface (UI) and lifecycle that can be reused in different parts of an app&#39;s UI, which can be used to give the impression of swapping between various screens of an application.</p>
+<p class="image-container"><img style="width: 532.28px" src="img\\9cc2fd0f183f54e4.png"></p>
+<h2 class="checklist" is-upgraded>What you&#39;ll learn</h2>
+<ul class="checklist">
+<li>How to create a new <code>Activity</code> in Android Studio.</li>
+<li>How to start an <code>Activity</code> with an explicit <code>Intent</code>.</li>
+<li>How to pass data between each <code>Activity</code> with an explicit <code>Intent</code>.</li>
+<li>How to create an implicit <code>Intent</code> to invoke actions.</li>
+<li>How to start an <code>Activity</code> expecting results back.</li>
+<li>How to advertise that your app can accept an implicit <code>Intent</code>.</li>
+<li>How to handle <code>permissions</code>.</li>
+<li>How to add a <code>Fragment</code> to the layout of an <code>Activity</code>.</li>
+<li>How to add a <code>Fragment</code> while an <code>Activity</code> is running.</li>
+<li>How to utilize the Android Navigation Component.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Multiple Activities" duration="10">
+        <p>Create a blank app with an empty <code>Activity</code>. Add four new activities to the app. Navigate to the <code>AndroidManifest.xml</code> file under the app&gt;manifest folders in the project directory. How does the file change as you add more activities to the app?</p>
+<p class="image-container"><img style="width: 208.00px" src="img\\480d1d827711c336.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>In the <code>manifest</code>, what does the value of the name attribute of each <code>Activity</code> tag correspond to?</li>
+<li>What is the purpose of the <code>intent-filter</code> element? </li>
+<li>What element MUST the <code>intent-filter</code> contain? What happens if there is no such element present? What elements CAN the <code>intent-filter</code> contain? What do these elements do? (hint: have a look through the <a href="https://developer.android.com/guide/topics/manifest/intent-filter-element.html" target="_blank">API guide</a>)</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Explicit Intents" duration="5">
+        <p>Create an app which displays a <code>Button</code>. Clicking the <code>Button</code> should send an explicit <code>Intent</code> to start a new <code>Activity</code> within the app.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\7c72f72941e65a12.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What two inputs are required when creating an explicit <code>Intent</code>?</li>
+<li>What does this refer to in the constructor of an <code>Intent</code>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sending Data" duration="5">
+        <p>Extend your app from the previous exercise to also send data along with the <code>Intent</code>, gathered from an <code>EditText</code> field. Have the second <code>Activity</code> retrieve this data and display it on the screen.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\ac853f6b8433ee9a.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What method is used to add extra data to an <code>Intent</code>?</li>
+<li>What method is used to retrieve this same data in the receiving <code>Activity</code>?</li>
+<li>Why do we need to set a key along with the data to be sent?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Expecting Results" duration="15">
+        <p>Extend your app from previous exercise to have the second <code>Activity</code> send a reply back to the first <code>Activity</code>. Display the reply in the first <code>Activity</code>.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\9db0c502dd4f0ab0.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the difference between using <code>finish()</code>and clicking the back button, if any?</li>
+<li>What does the back stack look like?</li>
+<li>What is the ActivityResultLauncher used for?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sending Emails" duration="10">
+        <p>Create an app which uses an implicit <code>Intent</code> to send an email. Have the <code>Intent</code> contain information for receiver email, subject and a text body.</p>
+<p class="image-container"><img style="width: 223.00px" src="img\\730c5daf9c02693e.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the difference between an implicit and explicit <code>Intent</code>?</li>
+<li>What type of functionality is typically available with implicit <code>Intents</code>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="A Web Browser" duration="20">
+        <p>Implement an app that registers itself as a web browser so that it can display web pages for other apps. Have the app show a requested web page in a <code>WebView</code> through an implicit <code>Intent</code>.</p>
+<p class="image-container"><img style="width: 250.00px" src="img\\3d73f8648652c72d.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>If you&#39;re stuck on creating the <code>WebView</code>, have a look through the <a href="https://developer.android.com/reference/android/webkit/WebView.html" target="_blank">WebView API</a>.</li>
+<li>What is the role of the <code>manifest</code> in this context?</li>
+<li>Certain intents require permissions to be set in the <code>AndroidManifest.xml</code> file. Why is this?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Fragments" duration="45">
+        <p>Get familiar with Fragments by following Google&#39;s official codelab on the topic.</p>
+<p><a href="https://codelabs.developers.google.com/codelabs/advanced-android-training-fragments/index.html?index=..%2F..advanced-android-training#0" target="_blank"><paper-button class="colored" raised>Official Fragments Codelab</paper-button></a></p>
+<p class="image-container"><img style="width: 586.00px" src="img\\5c0519251db31e4b.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the difference between an <code>Activity</code> and a <code>Fragment</code>?</li>
+<li>What is the difference between a static and dynamic <code>Fragment</code>?</li>
+<li>What is the concept behind a single <code>Activity</code> application?</li>
+<li>What are the advantages of using Fragments?</li>
+<li>What is the purpose of the FragmentManager?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Bonus: Navigation" duration="0">
+        <p>If you have time left, you can look into how to use the Navigation Component. This component acts as an abstraction on top of the navigation you have implemented so far, simplifying the implementation as well as adding various navigation features such as transitions, navigation graph overview and automatic handling of the backstack. It will be very useful when utilizing components such as Navigation Drawers, Bottom Navigation Bars and similar premade UI components, since they work with the Navigation Component out of the box.</p>
+<p><a href="https://codelabs.developers.google.com/codelabs/android-navigation/#0" target="_blank"><paper-button class="colored" raised>Official Navigation Component Codelab</paper-button></a></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\4b9220d567695c64.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Consider watching this <a href="https://www.youtube.com/watch?v=Y0Cs2MQxyIs" target="_blank">video</a> to get an overview</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

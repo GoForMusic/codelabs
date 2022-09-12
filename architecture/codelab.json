@@ -1,0 +1,22 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-02-02T17:11:37Z",
+  "id": "architecture",
+  "duration": 115,
+  "title": "Architecture",
+  "authors": "Kasper Knop Rasmussen",
+  "summary": "",
+  "source": "1gZ6sLVgZK80kbdbZ_HkjihBjDSGSpMxg-pGsGbDUX2o",
+  "theme": "android",
+  "status": [],
+  "category": [
+    "android"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "architecture"
+}

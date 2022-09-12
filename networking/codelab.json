@@ -1,0 +1,22 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-04-01T08:33:56Z",
+  "id": "networking",
+  "duration": 105,
+  "title": "Networking",
+  "authors": "Kasper Knop Rasmussen",
+  "summary": "",
+  "source": "19c_oztn9SJeWVpGlrQG9E14n80VXzLgtS13aON6d_hw",
+  "theme": "android",
+  "status": [],
+  "category": [
+    "android"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "networking"
+}

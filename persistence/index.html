@@ -1,0 +1,217 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Persistence</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="persistence"
+                  title="Persistence"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="5">
+        <p>Android provides several options to save data locally on the device. Today, we will look at 2 of the most common methods.</p>
+<p><a href="https://developer.android.com/guide/topics/data/data-storage.html#pref" target="_blank">Shared preferences</a>: Store primitive data in key-value pairs. This is used for e.g. storing the data of a settings menu.</p>
+<p class="image-container"><img style="width: 351.50px" src="img\\93c0248f7a614ba9.png"></p>
+<p><a href="https://developer.android.com/training/data-storage/room/" target="_blank">Room persistence library</a>: An Object-Relational Mapper (ORM), that is used to store large amounts of structured and related data in an SQL database using SQLite.</p>
+<p class="image-container"><img style="width: 374.82px" src="img\\f3ee48c47388adca.png"></p>
+<h2 class="checklist" is-upgraded>What you&#39;ll learn</h2>
+<ul class="checklist">
+<li>How to save and read data as key-value pairs using <code>SharedPreferences</code></li>
+<li>How to use the Room persistence library to store large amounts of related and structured data</li>
+<li>How to use Room in conjunction with MVVM and the repository pattern</li>
+<li>How to work in the background using <code>AsyncTask</code></li>
+<li>How to implement a Settings Menu to save user preferences</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="SharedPreferences" duration="15">
+        <p>Create an app with a <code>TextView</code>, <code>EditText</code> and <code>Button</code>. Clicking the <code>Button</code> should display the value of the <code>EditText</code> in the <code>TextView</code>. The data data inside the <code>TextView</code> must persist if the application is closed.</p>
+<p class="image-container"><img style="width: 218.00px" src="img\\f9a9f9a992386946.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What happens if you rotate the device without data persistence?</li>
+<li>What lifecycle methods should be used for storing and retrieving data?</li>
+<li>What kind of data can be stored in <code>SharedPreferences</code>?</li>
+<li>Where are the <code>SharedPreferences</code> stored?</li>
+<li>What parameters does <code>getSharedPreferences()</code> have?</li>
+<li>What is the difference between <code>apply()</code> and <code>commit()</code> on the <code>Editor</code>?</li>
+<li>What is the second parameter for <code>getString()</code>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="A Database Application" duration="20">
+        <p>In the following exercises we are going to create an application, that stores large amounts of structured data in an SQLite database.</p>
+<ol type="1" start="1">
+<li>Come up with an idea for your app - what are you going to store? Pets, Pokemon, Movies?</li>
+<li>Create an interface, that allows to create, read and delete all data in your database</li>
+<li>Utilize MVVM and the Repository pattern</li>
+</ol>
+<p class="image-container"><img style="width: 177.41px" src="img\\fce286fa67634ae2.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>You can also use the <a href="https://github.com/KasperKnop/ArchitectureExample" target="_blank">note-taking application</a> from last class as starting point or reference.</li>
+<li>What is SQLite?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Room" duration="5">
+        <p>We will use the Room persistence library to create and manage the SQLite database. Include the dependencies to the library in your project.</p>
+<p class="image-container"><img style="width: 455.82px" src="img\\9981e7b3c6cfd0ad.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is Room? Are there any alternatives to using Room?</li>
+<li>What is an ORM?</li>
+<li>What is the benefits of Rooms compile time verification?</li>
+<li>What does it mean that &#34;Room works with <code>LiveData</code>&#34;?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Entity" duration="5">
+        <p>Create an Entity of the data you are going to save.</p>
+<p class="image-container"><img style="width: 510.50px" src="img\\7550567f2ecc1c14.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the purpose of an Entity?</li>
+<li>What annotations are you using?</li>
+<li>What does the schema of your database look like?</li>
+<li>How is one instance of an Entity stored in your database?</li>
+<li>Why do you need getters and setters or public fields?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Data Access Object" duration="10">
+        <p>Create a DAO, that should allow for inserting, deleting and reading from the SQLite database. For reading, let the DAO return <code>LiveData</code>.</p>
+<p class="image-container"><img style="width: 604.37px" src="img\\228c751b04fe1e47.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the purpose of a DAO?</li>
+<li>What annotations are you using?</li>
+<li>How can you specify your own SQL-queries in the DAO?</li>
+<li>Why should the DAO return <code>LiveData</code>?</li>
+<li>How many DAOs do you need in your application?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Room Database" duration="10">
+        <p>Create the Room Database Object, that holds the SQLite database.</p>
+<p class="image-container"><img style="width: 310.00px" src="img\\50de9c79020236e8.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the purpose of the Room Database?</li>
+<li>What annotations are you using?</li>
+<li>Can you have more than one Entity in the Database? More than one DAO?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Providing Context" duration="10">
+        <p>Now that Room is set up, we can use it in our Repository.</p>
+<p>Make sure your View, ViewModel and Repository has the proper CRUD methods.</p>
+<p>To get the instance of the database, <code>Context</code> needs to be passed as an argument. The Repository does not know about <code>Context</code>, therefore:</p>
+<p>Let the <code>ViewModel</code> provide <code>Context</code> to the Repository</p>
+<p class="image-container"><img style="width: 600.00px" src="img\\909f90a808f1acac.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is <code>Context</code>?</li>
+<li>You can get <code>Context</code>/<code>Application</code> in your <code>ViewModel</code> by extending <a href="https://developer.android.com/reference/android/arch/lifecycle/AndroidViewModel?authuser=1" target="_blank"><code>AndroidViewModel</code></a> instead of <code>ViewModel</code></li>
+<li>Why is it a bad idea to pass <code>Context</code> directly from the <code>View</code> to the <code>ViewModel</code>?</li>
+<li>Why can we use <code>Application</code> instead of <code>Context</code>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Working In The Background" duration="30">
+        <p>Use <a href="https://developer.android.com/reference/java/util/concurrent/ExecutorService" target="_blank"><code>ExecutorService</code></a> to interact with the methods of the DAO on a background thread.</p>
+<p class="image-container"><img style="width: 371.00px" src="img\\c945dcb04f5ddf2f.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What error message do you get, if you just call the methods of the DAO directly in the Repository without using <code>ExecutorService</code>?</li>
+<li>Why do we have to interact with the SQLite database on a background thread?</li>
+<li>How does <code>ExecutorService</code> work? What are Handlers used for?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Bonus: More Database Interactions" duration="0">
+        <p>You should now have a working application, that can insert and delete data to/from your database, with the changes instantly visible using <code>LiveData</code>. Try to add new functionality using annotations or custom SQL-queries. For example: Updating existing data, sorting or searching for specific data.</p>
+<p class="image-container"><img style="width: 351.50px" src="img\\aec2b6a48632d123.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>You can also look into how <a href="https://developer.android.com/training/data-storage/room/referencing-data" target="_blank">complex data is referenced in Room</a>. Find a use case for associating your notes with other objects and implement it in your application.</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Bonus: Settings Menu" duration="0">
+        <p>Create a settings menu for your application, that stores some user preferences.</p>
+<p class="image-container"><img style="width: 250.49px" src="img\\4c0baeb8b18d9dab.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What kind of data could the user be interested in having in a settings menu?</li>
+<li>What is the difference between <code>View</code> and <code>Preference</code>?</li>
+<li>Where should the XML-resource for the settings screen be stored?</li>
+<li>Why must all preferences have a key?</li>
+<li>What kind of Preferences can be used? (e.g. <code>EditTextPreference</code> &amp; <code>SwitchPreference</code>)</li>
+<li>Are you using <a href="https://developer.android.com/reference/android/support/v7/preference/PreferenceFragmentCompat.html" target="_blank"><code>PreferenceFragmentCompat</code></a> to display the settings?</li>
+<li>How do you react to changes in the settings menu?</li>
+<li>Have a look at Google&#39;s official slides on <a href="https://docs.google.com/presentation/d/16VLrQqm1hT96AHm3WTisjHrmZzr5IUTVsQztu57QjFk/edit#slide=id.g116d7d9d49_3_13" target="_blank">App Settings</a></li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

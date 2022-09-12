@@ -1,0 +1,185 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Basics</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="basics"
+                  title="Basics"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="5">
+        <p>Welcome to the AND class. This will be your first codelab, that should get your started on your journey to becoming a professional Android developer. Each class will have exercises in this format. Notice that you can keep track of the remaining time for the exercises, and that the browser will store any progress you make along the way. The layout is responsive, so you can also access the exercises on a mobile device, if you find that more convenient.</p>
+<p class="image-container"><img style="width: 275.50px" src="img\\42503ddb259eb1ca.gif"></p>
+<p>Today you will learn to create your very first hello world application, focusing on the user interface (UI). The UI that appears on a screen of an Android device consists of a hierarchy of objects called <em>views</em> — every element of the screen is a <a href="https://developer.android.com/reference/android/view/View.html" target="_blank"><code>View</code></a>. The View class represents the basic building block for all UI components. Even layouts such as <a href="https://developer.android.com/guide/topics/ui/layout/linear" target="_blank"><code>LinearLayout</code></a> and <a href="https://developer.android.com/reference/android/support/constraint/ConstraintLayout" target="_blank"><code>ConstraintLayout</code></a> are subclasses of the <code>View</code> class.</p>
+<h2 class="checklist" is-upgraded><strong>What you&#39;ll learn</strong></h2>
+<ul class="checklist">
+<li>How to create an new Android project.</li>
+<li>How to run an application on an Android device or emulator.</li>
+<li>How to create layouts using XML and the Android Studio editor.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Your first project" duration="5">
+        <p>Create a new project for phone and tablets</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\5082d421cea24c4a.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What should be the minimum API level and why?</li>
+<li>What is the purpose of the package name?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Running an application" duration="5">
+        <p>Run your new project on an emulator and on a phone or tablet.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\af7d918dff61410.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>How do you manage virtual devices?</li>
+<li>How do you enable USB debugging on a physical device?</li>
+<li>How does an emulator compare to a real device for developing purposes?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="LinearLayout" duration="5">
+        <p>Implement a vertical <code>LinearLayout</code> containing a <a href="https://developer.android.com/reference/android/widget/TextView" target="_blank"><code>TextView</code></a>, an <a href="https://developer.android.com/reference/android/widget/ImageView" target="_blank"><code>ImageView</code></a> and a <a href="https://developer.android.com/reference/android/widget/Button" target="_blank"><code>Button</code></a>.</p>
+<p class="image-container"><img style="width: 469.71px" src="img\\e927aaef1de135d2.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the difference between a <code>View</code> and a <code>ViewGroup</code>?</li>
+<li>Could you implement your design using other ViewGroups?</li>
+<li>Can you convert this layout to a horizontal <code>LinearLayout</code>?</li>
+<li>What is the purpose of the attribute <a href="https://developer.android.com/reference/android/view/Gravity" target="_blank"><code>gravity</code></a> for LinearLayouts?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Layout Weight" duration="10">
+        <p>Create a responsive layout with two ImageViews of different color. One image should take up 25% of the screen, the other 75% - no matter the screen size or orientation.</p>
+<p class="image-container"><img style="width: 185.08px" src="img\\e65cc2e001b71acc.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>How can the <code>weight</code> attribute be helpful?</li>
+<li>Can <code>weight</code> be used in all ViewGroups?</li>
+<li>What would the weight-values of each <code>View</code> be if the Views were to be evenly distributed (considering a size of 0dp for all Views)?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Margin &amp; Padding" duration="10">
+        <p>Implement the layout shown in the image below consisting of a <code>LinearLayout</code> and TextViews. Focus on using <code>margin</code> and <code>padding</code> properly. It does not have to be pixel perfect.</p>
+<p class="image-container"><img style="width: 310.28px" src="img\\fe9d5b9b9599326f.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the difference between <code>margin</code> and <code>padding</code>?</li>
+<li>What unit is used for specifying <code>margin</code> and <code>padding</code>? How does this unit differ from the pixels?</li>
+<li>How can you make the <code>LinearLayout</code> scrollable, if too many TextViews are inside of it? (Hint: <a href="https://developer.android.com/reference/android/widget/ScrollView" target="_blank"><code>ScrollView</code></a> &amp; <a href="https://developer.android.com/reference/android/widget/FrameLayout" target="_blank"><code>FrameLayout</code></a>)</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Experiment with ConstraintLayout" duration="10">
+        <p>Implement a <code>ConstraintLayout</code> using the Design View. Drag various widgets from the palette and onto the layout. Constrain the views together, to their parents and to guidelines you add. Try to chain the views together.</p>
+<p class="image-container"><img style="width: 511.50px" src="img\\ecedaa1b101b7f44.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>How many ways can you add constraints to a <code>View</code>? </li>
+<li>What are the possible <code>layout_width</code> and <code>layout_height</code> values of a <code>View</code> and what do they do? How do you easily toggle between them?</li>
+<li>Is there any way to automatically add constraints and/or infer them? (hint: have a look through the toolbar)</li>
+<li>Is there an easy way to access all properties of a views from the Design View? How do you edit a property this way?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="A Trip to Singapore!" duration="30">
+        <p>Implement the layout shown in the image below using <code>ConstraintLayout</code>. The image and text does not need to mach.</p>
+<p class="image-container"><img style="width: 508.50px" src="img\\f62652e917159ccb.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Could this be implemented using LinearLayouts?</li>
+<li>What should happen when the phone rotates?</li>
+<li>Finding this difficult? <a href="https://codelabs.developers.google.com/codelabs/constraint-layout/index.html#0" target="_blank">Here</a> is a another codelab to help you out.</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Copy a Layout" duration="20">
+        <p>Copy the layout of a simple app on the Google Playstore.</p>
+<p>Follow these three steps:</p>
+<ol type="1" start="1">
+<li>Identify Views in the picture</li>
+<li>Consider how to position the Views using ViewGroups and various attributes</li>
+<li>Style your Views to get the desired look.</li>
+</ol>
+<p class="image-container"><img style="width: 576.50px" src="img\\d29431657a25d06d.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What attributes can you utilize from the various Views?</li>
+<li>Can you achieve the composition using nested LinearLayouts?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Bonus: Business Card" duration="0">
+        <p>Use everything you have learned so far to design and develop your own digital Business Card!</p>
+<p class="image-container"><img style="width: 378.96px" src="img\\4c859ec686c92b5c.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What information needs to be available?</li>
+<li>What Views and ViewGroups are you going to use?</li>
+<li>Does your business card look fine in landscape orientation?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

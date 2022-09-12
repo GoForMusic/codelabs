@@ -1,0 +1,22 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-02-02T17:10:23Z",
+  "id": "navigation",
+  "duration": 115,
+  "title": "Navigation",
+  "authors": "Kasper Knop Rasmussen",
+  "summary": "",
+  "source": "127fK7MRBeJIxSrK9cH46PmTfzI3fwwSW9A5nKfQkRxM",
+  "theme": "android",
+  "status": [],
+  "category": [
+    "android"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "navigation"
+}

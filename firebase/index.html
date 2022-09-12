@@ -1,0 +1,171 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Firebase</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="firebase"
+                  title="Firebase"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="5">
+        <p>Most applications are connected to a backend and utilize external services. Developing your own backend and services can be time consuming, and involves managing the scalability and security of your servers, as well as implementing the features you need, whether that being storing and retrieving user data in real time, authentication through third party identity providers, app analytics, maps and location integration, remote app configuration, etc...</p>
+<p>To make app development easier, <a href="https://developers.google.com/android" target="_blank">Google offers a wide array of services</a>. A lot of these features are part of Google Firebase - a service that can act as the backend for your application. Today we are going to see how this service can help us with two fundamental things in app development:</p>
+<ul>
+<li>Authentication and authorization of your users</li>
+<li>Storing and retrieving realtime cloud data</li>
+</ul>
+<p class="image-container"><img style="width: 613.62px" src="img\\cf8446fdfde12a54.png"></p>
+<h2 class="checklist" is-upgraded>What you&#39;ll learn</h2>
+<ul class="checklist">
+<li>How to connect your project with a Firebase backend</li>
+<li>How to authenticate users of your application with e.g. email/password, Google and Facebook, using Firebase Authentication</li>
+<li>How to utilize ready made UI and functionality for the sign in/out and registration process using FirebaseUI</li>
+<li>How to provide realtime cloud storage for your application using Firebase Realtime Database</li>
+<li>How to restrict read &amp; write access to the database using Firebase Rules</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Hello Firebase" duration="15">
+        <p>Create a new project in the <a href="https://console.firebase.google.com/" target="_blank">Firebase console</a>. Connect that project to a new Android Studio project.</p>
+<p class="image-container"><img style="width: 621.50px" src="img\\22019ddb3da78815.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>You can generate the SHA-1 through Execute Gradle Task &gt; &#34;gradle signingReport&#34;</li>
+<li>What is the SHA-1 fingerprint used for?</li>
+<li>What is the purpose of the generated google-services.json file?</li>
+<li>What dependencies are required in gradle?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Authentication with Firebase" duration="30">
+        <p>Integrate sign-in functionality using FirebaseUI. When the user is logged in, display a greeting with their username.</p>
+<p class="image-container"><img style="width: 224.35px" src="img\\ef1bbf1c5ecd1b4a.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What authentication methods can you implement?</li>
+<li>What is FirebaseUI?</li>
+<li>What sign-in providers have you enabled in the Firebase console?</li>
+<li>How can you customize the sign-in intent?</li>
+<li>Where do you handle the sign-in result?</li>
+<li>Is your solution skipping the login screen, if the user is already signed in?</li>
+<li>How do you retrieve the username of the current user?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Signing out" duration="10">
+        <p>Give an option for the user to sign out.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\9e85d70ed41b74d0.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What does FirebaseUI do behinds the scenes for you, when you invoke the sign-out?</li>
+<li>How do you make sure that a user can&#39;t enter your activity without being authenticated?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Saving Data with Firebase" duration="20">
+        <p>Store some data from an <code>EditText</code> on the Firebase Realtime Database.</p>
+<p class="image-container"><img style="width: 530.82px" src="img\\32e6fd36051f24d4.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What does it mean that a database is &#34;realtime&#34;?</li>
+<li>What two database options are available in Firebase?</li>
+<li>How is data in the Firebase Realtime Database structured? How is it different from e.g. an SQL database?</li>
+<li>What gradle dependencies do you need?</li>
+<li>Do you need to configure the database rules? What kind of rules can you set up?</li>
+<li>What is a Firebase Database Reference?</li>
+<li>What is a pushID? When is it used?</li>
+<li>How do you store objects in the database?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Retrieving Data with Firebase" duration="15">
+        <p>Retrieve the data from previous exercise and show it in a <code>TextView</code>.</p>
+<pre><code>myRef.addChildEventListener(new ChildEventListener() {
+
+   public void onChildAdded(DataSnapshot dataSnapshot, String s) {}
+
+   public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
+
+   public void onChildRemoved(DataSnapshot dataSnapshot) {}
+
+   public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+
+   public void onCancelled(DatabaseError databaseError) {}
+
+});</code></pre>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What EventListeners can you use? What&#39;s the difference between them?</li>
+<li>Where do you register and unregister the listeners? Why is this important?</li>
+<li>How do you retrieve objects from the database?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Bonus: Explore more on your own!" duration="0">
+        <p>Already done? Expand on the functionality of your application, or try out one of these:</p>
+<ul>
+<li>Utilize architecture components in conjunction with Firebase</li>
+<li>Customize the sign in flow with your own layout and more sign in options</li>
+<li>Populate lists with data from Firebase</li>
+<li>Explore alternative offerings from Google such as Cloud Storage, Cloud Firestore, ML Kit, Maps, Location API...</li>
+<li>Create a more elaborate data structure for your app and detail the database rules of the Realtime Database</li>
+<li>Integrate Google Services into your app project</li>
+</ul>
+<p class="image-container"><img style="width: 400.00px" src="img\\42503ddb259eb1ca.gif"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Have a look at <a href="https://firebase.googleblog.com/2017/12/using-android-architecture-components.html" target="_blank">this blog post</a>, if you want to combine the Firebase Realtime Database with MVVM</li>
+<li>Consider using the <a href="https://github.com/firebase/FirebaseUI-Android/blob/master/database/README.md" target="_blank"><code>FirebaseRecyclerAdapter</code></a> from Firebase UI for populating lists of data</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

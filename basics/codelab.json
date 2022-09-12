@@ -1,0 +1,22 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-02-02T17:06:43Z",
+  "id": "basics",
+  "duration": 100,
+  "title": "Basics",
+  "authors": "Kasper Knop Rasmussen",
+  "summary": "",
+  "source": "1AKkCN0HsZHxbetqsKsGdRZJZIMutZHyMAXe_0v_jKYo",
+  "theme": "android",
+  "status": [],
+  "category": [
+    "android"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "basics"
+}

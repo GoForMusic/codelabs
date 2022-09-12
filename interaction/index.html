@@ -1,0 +1,294 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Interaction</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="interaction"
+                  title="Interaction"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introduction" duration="5">
+        <p>Today you will create your first interactive Android application in Java. You will use the <a href="https://developer.android.com/reference/android/app/Activity.html" target="_blank"><code>Activity</code></a> class - the major building block of your applications user interface - that defines a single thing the user can do. You will also encounter various widgets to make the UI more interactive, and utilize resources to implement a scalable and maintainable application.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\441aba06026b3d29.png"></p>
+<h2 class="checklist" is-upgraded>What you&#39;ll learn</h2>
+<ul class="checklist">
+<li>How to create interactive applications using Java</li>
+<li>How the Activity Lifecycle works</li>
+<li>How to link XML and Java code</li>
+<li>How to create <code>Toast</code> and <code>Logcat</code> messages</li>
+<li>How to use various Android widgets such as a <code>Switch</code>, a <code>Button</code> and a <code>ProgressBar</code></li>
+<li>How to externalize and use resources</li>
+<li>How to localize an application</li>
+<li>How to provide alternative resources</li>
+<li>How to work with styles &amp; themes</li>
+<li>How to work with icons &amp; images</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Logging" duration="5">
+        <p>Create an info-log message in onCreate of your activity. Run the application and find the log.</p>
+<p class="image-container"><img style="width: 505.50px" src="img\\9332a9499c588fe4.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What methods does the Log-class have, and what arguments do they take?</li>
+<li>How do you monitor the logs and how do you filter to only show specific log messages?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="The Activity LifeCycle" duration="10">
+        <p>When is each method in the activity lifecycle called? Utilize the Log class to find out what happens when:</p>
+<ul>
+<li>The application is started</li>
+<li>The home button is pressed</li>
+<li>Receiving an SMS</li>
+<li>Receiving a phone call</li>
+<li>Pressing the back button</li>
+<li>Closing the application with the task manager</li>
+<li>Rotating the device</li>
+</ul>
+<p class="image-container"><img style="width: 413.50px" src="img\\b3801b23b46b21ed.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Can you explain the results shown for e.i. rotating the device?</li>
+<li>Do you know the purpose of each callback method?</li>
+<li>What is the shortcut to override the callback methods of the activity lifecycle?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="A Toast!" duration="5">
+        <p>Utilize an <code>OnClickListener</code> to make a <code>Button</code> display a <a href="https://developer.android.com/guide/topics/ui/notifiers/toasts" target="_blank"><code>Toast</code></a> when it is clicked.</p>
+<p class="image-container"><img style="width: 339.84px" src="img\\8e0228a862033789.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What options do you have for setting the <code>Context</code> as the first argument in <code>makeText()</code>? Would <code>this</code> work in an inner class? Why/why not?</li>
+<li>Can the duration of a <code>Toast</code> be anything else than <code>LENGTH_SHORT</code> and <code>LENGTH_LONG</code>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="onClick Attribute" duration="5">
+        <p>Utilize the <code>onClick</code> attribute in XML to make a <code>Button</code> display a <code>Toast</code> when it is clicked.</p>
+<p class="image-container"><img style="width: 312.00px" src="img\\d5f7be72f0c4e3d8.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the difference between using OnClickListeners in Java and the <code>onClick</code> attribute in XML? Do you have a preference?</li>
+<li>Can the <code>onClick</code> attribute be used on e.i. a <code>TextView</code> or <code>ImageView</code> as well?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Retrieving Input" duration="5">
+        <p>Create an app as shown in the image below. When the <code>Button</code> is pressed the text from the <code>EditText</code> should be displayed in the <code>TextView</code>. Hint: Use <code>setText()</code> and <code>getText()</code>.</p>
+<p class="image-container"><img style="width: 214.50px" src="img\\69189ac6b001c07a.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the difference between the attributes <code>hint</code> and <code>text</code> of <code>EditText</code>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="ProgressBar" duration="5">
+        <p>Create an app with two buttons and a <a href="https://developer.android.com/reference/android/widget/ProgressBar" target="_blank"><code>ProgressBar</code></a>. One button should increment the <code>ProgressBar</code> and one should decrement it. HINT: Use <code>setProgress()</code>.</p>
+<p class="image-container"><img style="width: 316.52px" src="img\\47ce7bed830429cd.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Could the two buttons share the same <code>OnClickListener</code> or <code>onClick</code> attribute name?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Simple Login Screen" duration="10">
+        <p>Create a login screen with an email and password field, as well as a login button. The <code>Button</code> should create a welcoming <code>Toast</code> if the login information was:</p>
+<p>Email: user@email.com</p>
+<p>Password: ILOVEAND</p>
+<p class="image-container"><img style="width: 266.00px" src="img\\e03b319195360f35.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>How do you retrieve information from a password field?</li>
+<li>Using <code>getText()</code> returns a <code>CharSequence</code> - how would you convert this to a <code>String</code> for easy comparison?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Externalizing Resources" duration="5">
+        <p>Create a new <code>String</code> resource in the values folder with the value &#34;AND IS AWESOME&#34;. Create two TextViews in your layout and use this <code>String</code> resource in both of them. Then give the TextViews a background color, that you define in <code>colors.xml</code>.</p>
+<p class="image-container"><img style="width: 288.00px" src="img\\928afb13a387e4b8.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the purpose of externalizing resources?</li>
+<li>Is it possible to store Strings in e.i. <code>colors.xml</code>? Why/why not?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Using Resources" duration="5">
+        <p>Create an <code>Activity</code> that changes the text of a <code>TextView</code> when a <code>Button</code> is pressed. All strings should be retrieved from the <code>values</code> folder.</p>
+<p class="image-container"><img style="width: 236.15px" src="img\\cf840ce112848a15.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>How do you access resources inside Activities?</li>
+<li>Is R.string.resourceName a <code>String</code> or an <code>int</code>?</li>
+<li>When is <code>getResources().getString()</code> useful?</li>
+<li>What advantages do you gain by not hardcoding your text in the Java code?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Switches" duration="10">
+        <p>Make an <code>ImageView</code> change between two images using a <a href="https://developer.android.com/reference/android/widget/Switch" target="_blank"><code>Switch</code></a>.</p>
+<p class="image-container"><img style="width: 136.50px" src="img\\43e6b1272ac57725.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Where do we store images in Android Studio?</li>
+<li>Are you using <code>isChecked()</code>?</li>
+<li>What would happen if your image-names started with a capitalized letter or a number?</li>
+<li>What kind of resources can be utilized in Android?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Localization" duration="5">
+        <p>Create an app with a few TextViews that supports two languages.</p>
+<p class="image-container"><img style="width: 235.04px" src="img\\bc33f89c070d8b4c.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>How do you access the translations editor?</li>
+<li>How do you test that both languages work as intended?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Alternative Resources" duration="10">
+        <p>Create an <code>Activity</code> that uses two different layouts depending on whether it is in landscape or portrait mode.</p>
+<p class="image-container"><img style="width: 222.50px" src="img\\d1e1f693d56aac84.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What configuration qualifiers can you use to support different resources for multiple devices?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Icons" duration="5">
+        <p>Create a new launcher icon for an application using Android Studio&#39;s build-in Asset Studio.</p>
+<p class="image-container"><img style="width: 377.02px" src="img\\ef4804125451d7d7.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the <code>mipmap</code> directory used for? Why does it contain multiple files with the same name?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Styles" duration="5">
+        <p>Create a new <code>style</code> for an app which contains TextViews. The <code>style</code> should define the size, color, font and style of the text, as well as making it all CAPS.</p>
+<p class="image-container"><img style="width: 449.50px" src="img\\d2c207b96206dbd4.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>How does layout/styles in Android compare to html/css in webdesign?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Themes" duration="5">
+        <p>Create a <code>theme</code> with new colors for the app- and status bar. Apply it to the main <code>Activity</code>.</p>
+<p class="image-container"><img style="width: 247.50px" src="img\\33383763111df024.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>What is the difference between a <code>style</code> and a <code>theme</code>?</li>
+<li>Why might the <code>AppCompat</code> themes be useful?</li>
+<li>Have you thought about following the <a href="https://www.materialpalette.com/" target="_blank">material design color palette</a>?</li>
+<li>What is the difference between setting the <code>theme</code> on the <code>Application</code> and the <code>Activity</code> element in the <code>Manifest</code>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Calculator" duration="15">
+        <p>Create a calculator, that can add numbers together. It can be as simple as two <code>EditText</code> fields and a <code>Button</code>, or as complex as the image below - your choice.</p>
+<p class="image-container"><img style="width: 235.00px" src="img\\68c94ac4f53a2079.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Are you using the parseInt method of the Integer wrapper class to convert Strings to integers?</li>
+<li>Have you converted the CharSequences to Strings?</li>
+<li>If you are using a lot of buttons: Have you considered using the same onClick attribute together with a switch statement for a more clean code structure with less boilerplate? You can use the Views getId method together with R.id-cases for this.</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Bonus: Score Keeper" duration="0">
+        <p>Use everything you have learned so far to design and develop your own score keeper!</p>
+<p class="image-container"><img style="width: 202.50px" src="img\\6e15dd6ebe8eb493.png"></p>
+<aside class="special"><h2 is-upgraded>Consider</h2>
+<ul>
+<li>Do you need a score keeper for a sport or a board game that you are playing?</li>
+<li>Could you use special widgets like <code>ToggleButton</code>, <code>Switch</code>, <code>RadioButton</code>, <code>CheckBox</code> or a <code>SeekBar</code>?</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
