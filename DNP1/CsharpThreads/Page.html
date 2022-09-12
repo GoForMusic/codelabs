@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link href="./../../Resources/Style.css" rel="stylesheet">
+<link href="./../../Resources/prism.css" rel="stylesheet">
+<script src="./../../Resources/TabNavigavtor.js"></script>
+<link rel="shortcut icon" href="./../../Resources/CodeIcon.png">
+<title>VIA Codelabs</title>
+<body>
+<script src="./../../Resources/prism.js"></script>
+
+<div>
+    <a href="./../../index.html" class="homelink">HOME</a>
+</div>
+<div style="display:flex;width:100%;height:100%;padding-top:64px">
+    <div id="steps-list">
+        <ol>
+            <li class="step" onclick="setTab(0)">1 Welcome</li>
+<li class="step" onclick="setTab(1)">2 Overview</li>
+<li class="step" onclick="setTab(2)">3 Start thread</li>
+<li class="step" onclick="setTab(3)">4 Pass arguments</li>
+<li class="step" onclick="setTab(4)">5 Call method on other class</li>
+<li class="step" onclick="setTab(5)">6 More thread methods</li>
+
+        </ol>
+    </div>
+    <div id="container" action="/action_page.php">
+        <div style="overflow:auto;">
+
+            <div style="float:right; margin:10px">
+                <button type="button" id="prevBtn" class="prev-button" onclick="nextPrev(-1)">Previous</button>
+                <button type="button" id="nextBtn" class="next-button" onclick="nextPrev(1)">Next</button>
+            </div>
+        </div>
+
+        <!-- One "tab" for each step in the form: -->
+
+        <div class="tab">
+<hr/><h1 id="multi-threading-in-c">Multi-threading in C#</h1><hr/>
+<p>This tutorial will take you through the basics of how to work with threads in C#. The concept is very similar to that of Java-threads.</p>
+
+</div>
+<div class="tab">
+<hr/><h1 id="multi-threading-overview">Multi-threading overview</h1><hr/>
+<p>The threading functionality exists in the namespace <strong>System.Threading</strong></p>
+<p>This namespace provides classes and interfaces which enable multithreaded programming, i.e. parallel execution of code, and leveraging threads.</p>
+<h3 id="example-usage">Example usage</h3>
+<ul>
+<li>Separate heavy calculations from UI (to avoid freezes)</li>
+<li>Regularly query external service, and notify application if new data arrived (polling)</li>
+<li>To avoid stopping processing when waiting for user's input</li>
+<li>When you have independent tasks, which do not intersect</li>
+<li>Handling multiple clients in a client-server setup with sockets</li>
+</ul>
+
+</div>
+<div class="tab">
+<hr/><h1 id="starting-a-thread-and-printing-numbers">Starting a thread, and printing numbers</h1><hr/>
+<p>In Java the <code>Thread</code> constructor takes an instance of a class, which implements the interface <code>Runnable</code>.<br />
+In C# the <code>Thread</code> constructor takes a delegate, i.e. either a lambda expression, or a method reference.</p>
+<p>As an example, we would like to execute the following method in a new thread:</p>
+<pre><code class="line-numbers language-csharp">public void PrintNumbers()
+{
+    for (int i = 0; i &lt; 1000; i++)
+    {
+        Console.WriteLine(i);
+        Thread.Sleep(100);
+    }
+}
+</code></pre>
+<p>This method just prints out numbers from 0 to 999. Notice the <code>Thread.Sleep(100)</code> method call, which sleeps the <em>current</em> thread for 100 milliseconds. Identical to the <code>sleep()</code> method in Java.</p>
+<p>Now, we would like to create a thread to execute this method in a new thread. That can be done as follows:</p>
+<pre><code class="line-numbers language-csharp">Thread thread = new Thread(PrintNumbers);
+thread.Start();
+</code></pre>
+<p>A new thread instance is created, the constructor takes a method reference to the <code>PrintNumbers</code> method shown above.<br />
+When the <code>Start()</code> method is called on the <code>thread</code> a new thread is created, and the method is executed.</p>
+
+</div>
+<div class="tab">
+<hr/><h1 id="passing-arguments">Passing arguments</h1><hr/>
+<p>In the previous example, we just referenced a method. This can be done, when we don't need to pass any arguments.</p>
+<p>The below method also prints numbers, but requires an argument.</p>
+<pre><code class="line-numbers language-csharp">public void PrintNumbers(int count)
+{
+    for (int i = 0; i &lt; count; i++)
+    {
+        Console.WriteLine(i);
+        Thread.Sleep(100);
+    }
+}
+</code></pre>
+<p>The way we start the thread now is to use a lambda expression, like below:</p>
+<pre><code class="line-numbers language-csharp">Thread thread = new Thread( () =&gt; PrintNumbers(1000) );
+thread.Start();
+</code></pre>
+<p>This lambda expression is an anonymous method.<br />
+<code>() =&gt; PrintNumbers(1000)</code><br />
+The leading <code>()</code> defines the arguments to be passed to the method. In this case, there are none, so the parameter list is empty.
+The <code>=&gt;</code> is the lambda operator, so the right hand side is the functionality to execute, in this case it's a method call to <code>PrintNumbers</code>.</p>
+
+</div>
+<div class="tab">
+<hr/><h1 id="calling-a-method-on-another-class">Calling a method on another class</h1><hr/>
+<p>Sometimes we would like to keep the behaviour in a separate class. E.g. in Java we usually create a separate class, which implements the <code>Runnable</code> interface, and so the <code>run()</code> is called, when the thread is started. We can do something similar in C#.</p>
+<p>Below is a class, which has a method to print numbers, like previous examples.</p>
+<pre><code class="line-numbers language-csharp">public class NumberPrinterClass
+{
+    public void PrintNumbers(int count)
+    {
+        for (int i = 0; i &lt; count; i++)
+        {
+            Console.WriteLine(i);
+            Thread.Sleep(100);
+        }
+    }
+}
+</code></pre>
+<p>Now, we would like to execute this functionality in a thread, created from a different class.<br />
+In the below main method, a new instance of the above class is created, and then a thread, which is started.</p>
+<pre><code class="line-numbers language-csharp">static void Main(string[] args)
+{
+    NumberPrinterClass npc = new();
+    Thread thread = new Thread(() =&gt; npc.PrintNumbers(100));
+    thread.Start();
+}
+</code></pre>
+
+</div>
+<div class="tab">
+<hr/><h1 id="more-thread-methods">More thread methods</h1><hr/>
+<p>Similar to Java, we have a couple of methods available for the threads. Relevant methods are:</p>
+<ul>
+<li>Thread.sleep(milliseconds : long)</li>
+<li>thread.Join(otherThread) - to tell a thread to not start until the argument thread object is finished. This will make the threads run in serial.</li>
+<li>thread.Interrupt() - to wake up a sleeping thread. It throws an exception, which must be handled.</li>
+</ul>
+
+</div>
+
+
+
+        
+        <div style="overflow:auto; padding-bottom: 10px">
+            <hr/>
+            <div style="float:right;">
+                <button type="button" id="prevBtn1" class="prev-button" onclick="nextPrev(-1)">Previous</button>
+                <button type="button" id="nextBtn1" class="next-button" onclick="nextPrev(1)">Next&gt;</button>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<script>
+    showFirstOrSpecificTab();
+</script>
+
+</body>
+</html>
